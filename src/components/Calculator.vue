@@ -85,7 +85,7 @@
     <div class="btn zero" @click="onNumber(0)">
       <span>0</span>
     </div>
-    <div class="btn" @click="onNumber('.')">
+    <div class="btn" @click="onComma()">
       <span>,</span>
     </div>
     <div class="btn operator" @click="onEqual()">
@@ -123,6 +123,17 @@ export default {
         const str =
           this.operand[0] && !isNaN(this.operand[0]) ? this.operand[0] : '';
         this.operand[0] = str + n;
+      }
+      this.refresh();
+    },
+    onComma() {
+      if (this.operator && !this.operand[1]) {
+        this.operand[1] = this.operand[0];
+        this.operand[0] = String('0.');
+      } else {
+        const str =
+          this.operand[0] && !isNaN(this.operand[0]) ? this.operand[0] : '0';
+        this.operand[0] = str + '.';
       }
       this.refresh();
     },
@@ -242,6 +253,7 @@ export default {
   padding: 0 var(--btn-radius) calc(var(--btn-radius) / 3);
 }
 .calculator > .window > span {
+  overflow-y: hidden;
   overflow-x: auto;
   line-height: var(--window-font-size);
   max-width: 100%;
