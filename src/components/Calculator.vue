@@ -166,6 +166,9 @@ export default {
       this.operand[1] = null;
       this.refresh();
     },
+    refresh() {
+      this.operand = [...this.operand];
+    },
     onSelectOp(op) {
       if (!this.operand[0]) {
         this.operand[0] = '0';
@@ -197,9 +200,6 @@ export default {
         this.operand[0] = null;
         this.refresh();
       }
-    },
-    refresh() {
-      this.operand = [...this.operand];
     },
     onLink(link) {
       window.open(link, '_blank');
