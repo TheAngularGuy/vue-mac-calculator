@@ -11,7 +11,10 @@
       <span>{{ result }}</span>
     </div>
     <!-- row 1 -->
-    <div class="btn function" @click="onReset()">
+    <div class="btn function" v-if="operand[0]" @click="onCorrect()">
+      <span>C</span>
+    </div>
+    <div class="btn function" v-else-if="!operand[0]" @click="onReset()">
       <span>AC</span>
     </div>
     <div class="btn function" @click="onPlusMinus()">
@@ -130,6 +133,8 @@ export default {
       if (this.operator && !this.operand[1]) {
         this.operand[1] = this.operand[0];
         this.operand[0] = String('0.');
+      } else if (this.operand[0] && this.operand[0].includes('.')) {
+        return;
       } else {
         const str =
           this.operand[0] && !isNaN(this.operand[0]) ? this.operand[0] : '0';
@@ -184,6 +189,14 @@ export default {
     onReset() {
       this.operator = null;
       this.operand = [null, null];
+    },
+    onCorrect() {
+      if (!this.operator && !this.operand[1]) {
+        this.onReset();
+      } else if (this.operator && this.operand[1]) {
+        this.operand[0] = null;
+        this.refresh();
+      }
     },
     refresh() {
       this.operand = [...this.operand];
