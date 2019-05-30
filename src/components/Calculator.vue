@@ -3,7 +3,7 @@
     <!-- nav buttons -->
     <div class="nav-btns">
       <div class="nav-btn" @click="onLink('https://www.linkedin.com/in/mustapha-aouas-7918a214b/')"></div>
-      <div class="nav-btn" @click="onLink('https://www.doyoubuzz.com/mustapha-aouas')"></div>
+      <div class="nav-btn" @click="onLink('https://flowcv.io/resume/feedback/lQRVYYOHCM7j')"></div>
       <div class="nav-btn" @click="onLink('https://github.com/ultraMIND/')"></div>
     </div>
     <!-- window -->
